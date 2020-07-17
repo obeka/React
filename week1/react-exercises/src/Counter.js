@@ -3,12 +3,14 @@ import React, {useState} from 'react'
 function Counter() {
     const [count, setCount] = useState(0);
     const feedback = count > 10 ? "It's higher than 10!" : "Keep counting...";
+
+    const handleCount = () => setCount(count + 1);
     
     return (
         <div>
             <span>{feedback}</span>  
             <Count count={count}/>
-            <Button setCount={setCount} />
+            <Button handleCount={handleCount} />
         </div>
     )
 }
@@ -21,10 +23,10 @@ function Count({count}) {
     )
 }
 
-function Button({setCount}) {
+function Button({handleCount}) {
     return (
         <div>
-            <button onClick={() => setCount(prev => prev + 1)}>Add 1!</button>
+            <button onClick={handleCount}>Add 1!</button>
         </div>
     )
 }

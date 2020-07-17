@@ -6,7 +6,7 @@ export default function ForecastList({forecastData}) {
     
     return (
         <div className='container'>
-            {forecastData.map(singleData => <ForecastCard  singleData={singleData}/>)}   
+            {forecastData.map(forecast => <ForecastCard  singleData={forecast}/>)}   
         </div>
     )
 }

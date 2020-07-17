@@ -2,9 +2,9 @@ import React from 'react'
 
 function Hobbies({hobby}) {
     return (
-        <div>
+        <>
             <li>{hobby}</li>
-        </div>
+        </>
     )
 }
 

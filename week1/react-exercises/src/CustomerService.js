@@ -6,10 +6,10 @@ import chat from './img/chat.png'
 
 function GuaranteeCard({img, title, desc}) {
     return (
-        <div style={{width: '32%'}}>
-            <img src={img} alt=""/>
+        <div className='services'>
+            <img src={img} alt="some service image"/>
             <h3>{title}</h3>
-    <p>{desc}</p>
+            <p>{desc}</p>
         </div>
     )
 }

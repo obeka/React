@@ -1,9 +1,9 @@
 import React from 'react';
 import './ForecastCard.css';
 
-export default function ForecastCard({singleData}) {
+export default function ForecastCard({forecast}) {
     //Getting datas which we will use to display from a singleData object.
-    const {name, weather :[{main, description}], coord : {lon, lat}, main : {temp_min, temp_max}, sys : {country} ,id } = singleData;
+    const {name, weather :[{main, description}], coord : {lon, lat}, main : {temp_min, temp_max}, sys : {country} ,id } = forecast;
 
     return (
         <div className='card-container' key={id}>
