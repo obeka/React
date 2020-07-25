@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './SearchBox.css';
 import Alert from './Alert';
+import { v4 as uuidv4 } from 'uuid';
 
-
-export default function SearchBox({setForecastDatas, forecastDatas}) {
+export default function SearchBox({setForecastData, forecastData}) {
     const [cityName, setCityName] = useState('');
     const [isLoading, setLoading] = useState(false); //loading effect
     const [hasError, setError] = useState({status : false});
@@ -12,7 +12,7 @@ export default function SearchBox({setForecastDatas, forecastDatas}) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const duplicateSearch = forecastDatas.some(singleData => singleData.name.toLowerCase() === cityName.toLowerCase()); // prevent user enter the same city entered before
+        const duplicateSearch = forecastData.some(singleCity => singleCity.response.name.toLowerCase() === cityName.toLowerCase()); // prevent user enter the same city entered before
         if(!duplicateSearch) {
             getCity(cityName);
         } else {
@@ -31,13 +31,15 @@ export default function SearchBox({setForecastDatas, forecastDatas}) {
         setLoading(true);
         setError({status: false})
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`);
-            const forecast = await response.json();
-            if(forecast.cod === 200) {
-                setForecastDatas([...forecastDatas, forecast]);
+            const rawResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`);
+            const response = await rawResponse.json();
+            if(response.cod === 200) {
+                const forecast = { response, id: uuidv4()};
+                setForecastData([...forecastData, forecast]);
+                setCityName('')
             } else {
                 //Client side errors - Improper city name
-                setError({status: true, text: forecast, type: 'client'})
+                setError({status: true, text: response, type: 'client'})
             }
             setLoading(false);
         } catch (error) {
@@ -50,7 +52,7 @@ export default function SearchBox({setForecastDatas, forecastDatas}) {
         <>
             <form onSubmit={handleSubmit}>
                 <input type="text" value={cityName} onChange={handleCityName} placeholder='Enter a city name...'
-                    required />
+                    required className={hasError.type === 'client' ? 'input-danger' : hasError.type ==='duplicate' ? 'input-duplicate' : ''}/>
                 <button type='submit'>Get Weather</button>
                 {hasError.status && <Alert hasError={hasError} />}
                 {/* Loading effect from outer source */}

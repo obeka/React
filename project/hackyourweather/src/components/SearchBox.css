@@ -24,6 +24,13 @@ button:hover {
     outline: none;
 }
 
+.input-duplicate {
+  box-shadow: 0 0 5px 5px #FFF3CD;
+}
+.input-danger {
+  box-shadow: 0 0 5px 5px #F8D7DA;
+}
+
 .lds-ellipsis {
     display: inline-block;
     position: relative;
