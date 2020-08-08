@@ -29,6 +29,15 @@ p:last-child {
   align-items: center;
 }
 
+.header a {
+  color: black;
+  transition: .2s;
+}
+
+.header a:hover {
+  color: rgba(0, 0, 0,0.7);
+}
+
 .delete-icon {
    font-size: 30px;
    display: inline-block;
