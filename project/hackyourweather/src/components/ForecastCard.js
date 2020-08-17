@@ -8,7 +8,6 @@ export default function ForecastCard({singleCity, forecastData, setForecastData}
     const id = singleCity.id;
 
     const handleDelete = e => {
-        console.log(e.target.id);
         const filteredArr = forecastData.filter(singleCity=> singleCity.id !== e.target.id);
         setForecastData(filteredArr);
     }

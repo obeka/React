@@ -27,20 +27,18 @@ function FiveDayForecast() {
         fetchFiveDaysAPI();
     }, [])
 
-    const renderLineChart = (
-        <LineChart width={1000} height={400} data={fiveDaysData} style={{margin: '50px auto'}}>
+  
+
+    return (
+        <div>
+            <h2>{cityName} - 5 Days Forecast</h2>
+            <LineChart width={1000} height={400} data={fiveDaysData} style={{margin: '50px auto'}}>
             <Line type="monotone" dataKey="temp" stroke="#8884d8" fill="#8884d8"/>
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
         </LineChart>
-);
-
-    return (
-        <div>
-            <h2>{cityName} - 5 Days Forecast</h2>
-            {renderLineChart}
             <button className='btn btn-primary mb-3 back-btn' onClick={() => history.goBack()}>Go Back</button>
         </div>
     )

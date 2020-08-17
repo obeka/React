@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import './Hobbies';
-import HobbyList from './Hobbies';
-import Guarantee from './CustomerService';
+import Hobbies from './Hobbies';
+import CustomerService from './CustomerService';
 import Counter from './Counter'
 
 function App() {
@@ -20,8 +20,8 @@ function App() {
         >
           Learn React
         </a>
-        <HobbyList/>
-        <Guarantee />
+        <Hobbies/>
+        <CustomerService />
         <Counter />
       </header>
     </div>
